@@ -1,5 +1,5 @@
 using MudBlazor.Services;
-using MyApplication.Components;
+using MudExercise01.Components;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Components.Authorization;
 
