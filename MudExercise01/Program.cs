@@ -1,7 +1,9 @@
-using MudBlazor.Services;
-using MudExercise01.Components;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Components.Authorization;
+using MudBlazor.Services;
+using MudExercise01.Components;
+using MudExerciseLib.Repository;
+using MudExerciseLib.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +15,10 @@ builder.Services.AddMudServices();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie();
 builder.Services.AddAuthorization();
+
+//builder.Services.AddTransient<ISolutionRepository, SolutionRepository>();
+builder.Services.AddScoped<IDataAccessService, DapperDataAccessService>();
+builder.Services.AddScoped<IDbRepository, DbRepository>();
 
 // Add services to the container.
 builder.Services.AddRazorComponents()

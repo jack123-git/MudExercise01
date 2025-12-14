@@ -2,7 +2,7 @@
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using MudExerciseLib.Extension;
-using MudExerciseLib.Model;
+using MudExerciseLib.Models;
 using System.Data;
 
 namespace MudExerciseLib.Data
@@ -13,8 +13,9 @@ namespace MudExerciseLib.Data
 
         public Task<IEnumerable<Solution>> GetAllSoluationsAsync() 
         {
-            using var connection = new SqlConnection(_config.GetConnectionString("SysConnection", DeCodeType.Base64));
-            var soluations = connection.QueryAsync<Solution>("select * from AppSetting.Solution Order by Name");
+            //using var connection = new SqlConnection(_config.GetConnectionString("SysConnection", DeCodeType.Base64));
+            using var connection = new SqlConnection(_config.GetConnectionString("SysConnection", DeCodeType.NONE));
+            var soluations = connection.QueryAsync<Solution>("select * from AppData.Solution Order by SolutionName");
             return soluations;
 
         }

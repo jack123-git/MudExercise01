@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject ISolutionRepository SolutionRepository
 
 <PageTitle>Home</PageTitle>
 
@@ -57,3 +58,24 @@
         More details
     </MudLink>
 </MudText>
+
+@if (Solutions != null && Solutions.Count > 0)
+{
+    <ul>
+        @foreach (var solution in Solutions)
+        {
+            <li>@solution.SolutionId - @solution.SolutionName</li>
+        }
+    </ul>    
+}
+
+@code {
+    private List<Solution>? Solutions;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Solutions = ((IEnumerable<Solution>)await SolutionRepository.GetAllSoluationsAsync()).ToList();
+    }
+
+
+}
